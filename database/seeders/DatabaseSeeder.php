@@ -17,13 +17,22 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-//        Category::factory()
-//            ->count(10)
-//            ->create();
-
-        Site::factory()
+        Category::factory()
             ->count(100)
             ->create();
 
+        for ($i = 0; $i < 10000; $i++) {
+            Site::factory()
+                ->create([
+                    'category_id' => Category::all()->random()
+                ]);
+        }
+
+
+        foreach (Category::all() as $cat) {
+            $cat->update([
+                'has_sites' => $cat->countAllSites()
+            ]);
+        }
     }
 }

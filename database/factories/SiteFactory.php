@@ -22,10 +22,20 @@ class SiteFactory extends Factory
      */
     public function definition()
     {
+        static $last_category;
+
+        if (is_null($last_category)) {
+            $last_category = Category::factory();
+        }
+
+        if (mt_rand(0, 100) < 20) {
+            $last_category = Category::factory();
+        }
+
         return [
-            'category_id' => Category::factory(),
+            'category_id' => $last_category,
             'url' => $this->faker->url,
-            'title' => $this->faker->word(2),
+            'title' => $this->faker->sentence(mt_rand(2,5)),
             'description' => $this->faker->sentence,
             'long_description' => $this->faker->paragraph,
         ];
