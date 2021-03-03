@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
     public function index() {
 
-        return view('catalog.index');
+        $categories = Category::where('parent_id', null)
+            ->orderBy('name')
+            ->get()
+        ;
+
+        //var_dump($categories);
+
+        return view('catalog.index', compact('categories'));
     }
 
 

@@ -18,6 +18,7 @@ class CreateCategory extends Migration
             $table->bigInteger('parent_id')->unsigned()->nullable();
             $table->string('name');
             $table->integer('has_sites')->default(0);
+            $table->integer('depth')->default(0);
             $table->timestamps();
         });
     }

@@ -21,6 +21,13 @@ class DatabaseSeeder extends Seeder
             ->count(100)
             ->create();
 
+        foreach (Category::orderBy('id')->get() as $cat) {
+            if ($cat->parent) {
+                $cat->depth = $cat->parent->depth + 1;
+                $cat->save();
+            }
+        }
+
         for ($i = 0; $i < 10000; $i++) {
             Site::factory()
                 ->create([
