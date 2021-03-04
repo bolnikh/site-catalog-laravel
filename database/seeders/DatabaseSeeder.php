@@ -18,14 +18,26 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         Category::factory()
-            ->count(30)
+            ->count(mt_rand(10, 20))
             ->create();
 
-        foreach (Category::orderBy('id')->get() as $cat) {
-            if ($cat->parent) {
-                $cat->depth = $cat->parent->depth + 1;
-                $cat->save();
-            }
+        foreach (Category::all() as $cat) {
+            Category::factory()
+                ->count(mt_rand(2, 10))
+                ->create([
+                    'parent_id' => $cat,
+                    'depth' => 1,
+                ]);
+
+        }
+
+        foreach (Category::where('depth', 1) as $cat1) {
+            Category::factory()
+                ->count(mt_rand(0, 10))
+                ->create([
+                    'parent_id' => $cat1,
+                    'depth' => 2,
+                ]);
         }
 
         for ($i = 0; $i < 10000; $i++) {

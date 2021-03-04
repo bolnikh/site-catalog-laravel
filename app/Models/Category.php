@@ -64,12 +64,12 @@ class Category extends Model
         return $res;
     }
 
-    public function getBestSubCategories() {
-        return $this->childs()
-            ->orderBy('has_sites', 'desc')
-            ->limit(3)
-            ->get();
-    }
+//    public function getBestSubCategories() {
+//        return $this->childs()
+//            ->orderBy('has_sites', 'desc')
+//            ->limit(3)
+//            ->get();
+//    }
 
     public function url() {
         return '/category/'.$this->id;

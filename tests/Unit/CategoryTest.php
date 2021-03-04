@@ -341,6 +341,7 @@ class CategoryTest extends TestCase
         $this->assertEquals(27, $cat1->refresh()->countAllSites());
     }
 
+    /*
     public function test_getBestSubCategories() {
 
         $cat1 = Category::factory()
@@ -394,4 +395,5 @@ class CategoryTest extends TestCase
         $this->assertEquals($cat4->id, $best[1]->id);
         $this->assertEquals($cat5->id, $best[2]->id);
     }
+    */
 }

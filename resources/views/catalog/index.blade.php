@@ -18,13 +18,6 @@
 
                 <div class="col-md">
                     <h2 class=""><a href="{{ $cat->url() }}">{{ $cat->name }}</a></h2>
-                    <ul class="list-inline">
-                        @foreach ($cat->getBestSubCategories() as $best_cat)
-                            <li class="list-inline-item"><a href="{{ $best_cat->url() }}">{{ $best_cat->name }}</a></li>
-                        @endforeach
-
-                        <li class="list-inline-item"><a href="{{ $cat->url() }}">...</a></li>
-                    </ul>
                 </div>
 
             @endforeach
