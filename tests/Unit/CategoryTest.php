@@ -340,4 +340,58 @@ class CategoryTest extends TestCase
 
         $this->assertEquals(27, $cat1->refresh()->countAllSites());
     }
+
+    public function test_getBestSubCategories() {
+
+        $cat1 = Category::factory()
+            ->create(
+                [
+                    'name' => $this->faker->word,
+                    'parent_id' => null
+                ]
+            );
+
+
+        $cat2 = Category::factory()
+            ->create(
+                [
+                    'name' => $this->faker->word,
+                    'parent_id' => $cat1,
+                    'has_sites' => 5,
+                ]
+            );
+
+        $cat3 = Category::factory()
+            ->create(
+                [
+                    'name' => $this->faker->word,
+                    'parent_id' => $cat1,
+                    'has_sites' => 100,
+                ]
+            );
+
+        $cat4 = Category::factory()
+            ->create(
+                [
+                    'name' => $this->faker->word,
+                    'parent_id' => $cat1,
+                    'has_sites' => 50,
+                ]
+            );
+
+        $cat5 = Category::factory()
+            ->create(
+                [
+                    'name' => $this->faker->word,
+                    'parent_id' => $cat1,
+                    'has_sites' => 25,
+                ]
+            );
+
+        $best = $cat1->getBestSubCategories();
+
+        $this->assertEquals($cat3->id, $best[0]->id);
+        $this->assertEquals($cat4->id, $best[1]->id);
+        $this->assertEquals($cat5->id, $best[2]->id);
+    }
 }

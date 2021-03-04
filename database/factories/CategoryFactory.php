@@ -22,7 +22,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->sentence(mt_rand(1,4)),
+            'name' => $this->faker->sentence(mt_rand(1,2)),
             'parent_id' => mt_rand(0,10) < 5 ? Category::factory() : null,
         ];
     }

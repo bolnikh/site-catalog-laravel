@@ -20,8 +20,9 @@ class CatalogController extends Controller
     }
 
 
-    public function category() {
-        return view('catalog.category');
+    public function category(Request $request, Category $category) {
+
+        return view('catalog.category', compact('category'));
     }
 
 

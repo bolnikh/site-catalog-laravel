@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         Category::factory()
-            ->count(100)
+            ->count(30)
             ->create();
 
         foreach (Category::orderBy('id')->get() as $cat) {

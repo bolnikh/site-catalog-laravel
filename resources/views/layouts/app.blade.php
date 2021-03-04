@@ -37,10 +37,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Начало <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/">Начало <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  text-danger" href="#">Добавить сайт</a>
+                            <a class="nav-link  text-danger" href="/add">Добавить сайт</a>
                         </li>
 
                     </ul>
@@ -66,13 +66,13 @@
 
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">О нас</a>
+                        <a class="nav-link" href="/about">О нас</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Правила</a>
+                        <a class="nav-link" href="/rules">Правила</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Поиск</a>
+                        <a class="nav-link" href="/searh">Поиск</a>
                     </li>
                 </ul>
 

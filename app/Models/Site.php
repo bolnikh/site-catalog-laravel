@@ -12,4 +12,12 @@ class Site extends Model
     public function category() {
         return $this->belongsTo(Category::class);
     }
+
+    public function url() {
+        return '/site/'.$this->id;
+    }
+
+    public function abuse_url() {
+        return '/abuse/'.$this->id;
+    }
 }
