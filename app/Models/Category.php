@@ -64,14 +64,48 @@ class Category extends Model
         return $res;
     }
 
-//    public function getBestSubCategories() {
-//        return $this->childs()
-//            ->orderBy('has_sites', 'desc')
-//            ->limit(3)
-//            ->get();
-//    }
 
     public function url() {
         return '/category/'.$this->id;
     }
+
+
+    public static function getListForSelect() {
+        $arr = Category::all()->toArray();
+
+        array_multisort(array_column($arr, 'name'), $arr);
+
+        $res = [];
+
+
+
+        foreach ($arr as $a) {
+            if (is_null($a['parent_id'])) {
+                $res[] = $a;
+                $res = array_merge($res, self::getSubListForSelect($arr, $a['id']));
+            }
+        }
+
+        $last_res = [];
+
+        foreach ($res as $r) {
+            $last_res[$r['id']] = str_repeat('-', $r['depth']).($r['depth'] > 0 ? ' ' : '').$r['name'];
+        }
+
+        return $last_res;
+    }
+
+    public static function getSubListForSelect($arr, $parent_id) {
+        $res = [];
+
+        foreach ($arr as $a) {
+            if ($a['parent_id'] == $parent_id) {
+                $res[] = $a;
+                $res = array_merge($res, self::getSubListForSelect($arr, $a['id']));
+            }
+        }
+
+        return $res;
+    }
+
 }

@@ -23,4 +23,5 @@ Route::get('/abuse/{site}', [App\Http\Controllers\CatalogController::class, 'abu
 Route::get('/add_form', [App\Http\Controllers\CatalogController::class, 'add_form'])->name('add_form');
 Route::get('/about', [App\Http\Controllers\CatalogController::class, 'about'])->name('about');
 Route::get('/rules', [App\Http\Controllers\CatalogController::class, 'rules'])->name('rules');
-Route::get('/add', [App\Http\Controllers\SiteController::class, 'add'])->name('rules');
+Route::get('/add', [App\Http\Controllers\SiteController::class, 'add_form'])->name('add_form');
+Route::post('/add', [App\Http\Controllers\SiteController::class, 'store'])->name('store');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Site;
 use Illuminate\Http\Request;
 
 class CatalogController extends Controller
@@ -30,8 +31,8 @@ class CatalogController extends Controller
         return view('catalog.search');
     }
 
-    public function site() {
-        return view('catalog.site');
+    public function site(Request $request, Site $site) {
+        return view('catalog.site', compact('site'));
     }
 
     public function add_form() {

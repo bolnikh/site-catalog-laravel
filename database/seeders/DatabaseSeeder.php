@@ -48,10 +48,6 @@ class DatabaseSeeder extends Seeder
         }
 
 
-        foreach (Category::all() as $cat) {
-            $cat->update([
-                'has_sites' => $cat->countAllSites()
-            ]);
-        }
+
     }
 }

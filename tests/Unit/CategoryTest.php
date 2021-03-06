@@ -341,59 +341,107 @@ class CategoryTest extends TestCase
         $this->assertEquals(27, $cat1->refresh()->countAllSites());
     }
 
-    /*
-    public function test_getBestSubCategories() {
 
-        $cat1 = Category::factory()
+    public function test_getListForSelect() {
+
+
+        $arr[] = Category::factory()
             ->create(
                 [
-                    'name' => $this->faker->word,
-                    'parent_id' => null
+                    'name' => 'один',
+                    'parent_id' => null,
+                    'depth' => 0,
+                ]
+            );
+
+        $arr[] = Category::factory()
+            ->create(
+                [
+                    'name' => 'два',
+                    'parent_id' => null,
+                    'depth' => 0,
+                ]
+            );
+
+        $arr[] = Category::factory()
+            ->create(
+                [
+                    'name' => 'три',
+                    'parent_id' => $arr[0],
+                    'depth' => 1,
+                ]
+            );
+
+        $arr[] = Category::factory()
+            ->create(
+                [
+                    'name' => 'четыре',
+                    'parent_id' => $arr[0],
+                    'depth' => 1,
+                ]
+            );
+
+        $arr[] = Category::factory()
+            ->create(
+                [
+                    'name' => 'про',
+                    'parent_id' => null,
+                    'depth' => 0,
+                ]
+            );
+
+        $arr[] = Category::factory()
+            ->create(
+                [
+                    'name' => 'сто',
+                    'parent_id' => null,
+                    'depth' => 0,
+                ]
+            );
+
+        $arr[] = Category::factory()
+            ->create(
+                [
+                    'name' => 'хххаааа',
+                    'parent_id' => $arr[2],
+                    'depth' => 2,
                 ]
             );
 
 
-        $cat2 = Category::factory()
+
+        $arr[] = Category::factory()
             ->create(
                 [
-                    'name' => $this->faker->word,
-                    'parent_id' => $cat1,
-                    'has_sites' => 5,
+                    'name' => 'таааа',
+                    'parent_id' => $arr[2],
+                    'depth' => 2,
                 ]
             );
 
-        $cat3 = Category::factory()
+        $arr[] = Category::factory()
             ->create(
                 [
-                    'name' => $this->faker->word,
-                    'parent_id' => $cat1,
-                    'has_sites' => 100,
+                    'name' => 'вааа',
+                    'parent_id' => $arr[2],
+                    'depth' => 2,
                 ]
             );
 
-        $cat4 = Category::factory()
-            ->create(
-                [
-                    'name' => $this->faker->word,
-                    'parent_id' => $cat1,
-                    'has_sites' => 50,
-                ]
-            );
+        $res = Category::getListForSelect();
 
-        $cat5 = Category::factory()
-            ->create(
-                [
-                    'name' => $this->faker->word,
-                    'parent_id' => $cat1,
-                    'has_sites' => 25,
-                ]
-            );
+        $exp = array (
+            2 => 'два',
+            1 => 'один',
+            3 => '- три',
+            9 => '-- вааа',
+            8 => '-- таааа',
+            7 => '-- хххаааа',
+            4 => '- четыре',
+            5 => 'про',
+            6 => 'сто',
+        );
 
-        $best = $cat1->getBestSubCategories();
-
-        $this->assertEquals($cat3->id, $best[0]->id);
-        $this->assertEquals($cat4->id, $best[1]->id);
-        $this->assertEquals($cat5->id, $best[2]->id);
+        $this->assertEquals($res, $exp);
     }
-    */
 }
