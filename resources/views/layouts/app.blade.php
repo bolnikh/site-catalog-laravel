@@ -65,14 +65,20 @@
 
 
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item
+                        @if (Request::is('about')) active @endif
+                    ">
                         <a class="nav-link" href="/about">О нас</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item
+                        @if (Request::is('rules')) active @endif
+                    ">
                         <a class="nav-link" href="/rules">Правила</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/searh">Поиск</a>
+                    <li class="nav-item
+                        @if (Request::is('search')) active @endif
+                    ">
+                        <a class="nav-link" href="/search">Поиск</a>
                     </li>
                 </ul>
 

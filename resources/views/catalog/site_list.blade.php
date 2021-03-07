@@ -36,7 +36,9 @@
     @endforeach
 
 
-    {{ $site_list->links('vendor.pagination.bootstrap-4') }}
+    @if (is_object($site_list))
+        {{ $site_list->links('vendor.pagination.bootstrap-4') }}
+    @endif
 
 
 </div>

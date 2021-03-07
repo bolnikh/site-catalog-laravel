@@ -28,7 +28,7 @@ class CatalogController extends Controller
 
 
     public function search() {
-        return view('catalog.search');
+        return view('catalog.search', ['site_list' => []]);
     }
 
     public function site(Request $request, Site $site) {
