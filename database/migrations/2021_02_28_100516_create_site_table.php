@@ -19,7 +19,7 @@ class CreateSiteTable extends Migration
             $table->text('url');
             $table->string('title');
             $table->text('description');
-            $table->text('long_description');
+            $table->text('long_description')->nullable();
 
             $table->timestamps();
         });

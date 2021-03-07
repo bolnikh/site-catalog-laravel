@@ -9,13 +9,15 @@
 
             <div class="card">
                 <div class="card-header">
-                    {{ $site->title }}
+                    <a href="{{ $site->url }}">{{ $site->title }}</a>
                 </div>
                 <div class="card-body">
 
                     {{ $site->description }}
 
-                    <a href="{{ $site->url() }}" class="btn btn-outline-primary m-2">Подробнее</a>
+                    @if ($site->long_description)
+                        <a href="{{ $site->url() }}" class="btn btn-outline-primary m-2">Подробнее</a>
+                    @endif
 
                 </div>
 

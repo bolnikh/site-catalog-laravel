@@ -46,4 +46,8 @@ class CatalogController extends Controller
     public function rules() {
         return view('catalog.rules');
     }
+
+    public function abuse() {
+        return view('catalog.abuse');
+    }
 }
