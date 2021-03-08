@@ -39,14 +39,6 @@ class CatalogController extends Controller
         return view('catalog.add_form');
     }
 
-    public function about() {
-        return view('catalog.about');
-    }
-
-    public function rules() {
-        return view('catalog.rules');
-    }
-
     public function abuse() {
         return view('catalog.abuse');
     }

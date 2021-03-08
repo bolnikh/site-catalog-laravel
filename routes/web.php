@@ -21,9 +21,12 @@ Route::get('/search', [App\Http\Controllers\CatalogController::class, 'search'])
 Route::get('/site/{site}', [App\Http\Controllers\CatalogController::class, 'site'])->name('site');
 Route::get('/abuse/{site}', [App\Http\Controllers\CatalogController::class, 'abuse'])->name('site');
 Route::get('/add_form', [App\Http\Controllers\CatalogController::class, 'add_form'])->name('add_form');
-Route::get('/about', [App\Http\Controllers\CatalogController::class, 'about'])->name('about');
-Route::get('/rules', [App\Http\Controllers\CatalogController::class, 'rules'])->name('rules');
+
 Route::get('/search', [App\Http\Controllers\CatalogController::class, 'search'])->name('search');
 
 Route::get('/add', [App\Http\Controllers\SiteController::class, 'add_form'])->name('add_form');
 Route::post('/add', [App\Http\Controllers\SiteController::class, 'store'])->name('store');
+
+Route::get('/about', [App\Http\Controllers\PageController::class, 'about'])->name('about');
+Route::get('/contact', [App\Http\Controllers\PageController::class, 'contact'])->name('contact');
+Route::get('/rules', [App\Http\Controllers\PageController::class, 'rules'])->name('rules');

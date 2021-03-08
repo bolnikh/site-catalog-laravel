@@ -88,6 +88,11 @@
                         <a class="nav-link" href="/about">О нас</a>
                     </li>
                     <li class="nav-item
+                        @if (Request::is('contact')) active @endif
+                        ">
+                        <a class="nav-link" href="/contact">Контакт</a>
+                    </li>
+                    <li class="nav-item
                         @if (Request::is('rules')) active @endif
                     ">
                         <a class="nav-link" href="/rules">Правила</a>
