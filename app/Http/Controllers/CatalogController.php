@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Abuse;
 use App\Models\Site;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CatalogController extends Controller
 {
@@ -35,11 +37,24 @@ class CatalogController extends Controller
         return view('catalog.site', compact('site'));
     }
 
-    public function add_form() {
-        return view('catalog.add_form');
+    public function abuse(Request $request, Site $site) {
+        return view('catalog.abuse', compact('site'));
     }
 
-    public function abuse() {
-        return view('catalog.abuse');
+    public function send_abuse(Request $request, Site $site) {
+        $validated = $request->validate([
+            'site_id' => 'required|integer',
+            'contact' => 'required|min:5|max:255',
+            'email' => 'bail|required|min:5|max:255|email',
+            'message' => 'required|min:5|max:5120',
+        ]);
+
+
+        Abuse::create($validated);
+
+        Session::flash('message', 'Сообщение отправлено');
+        Session::flash('alert-class', 'alert-success');
+
+        return redirect('/');
     }
 }
