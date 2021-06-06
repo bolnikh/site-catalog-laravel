@@ -114,4 +114,14 @@ return [
 
     'password_timeout' => 10800,
 
+
+    /*
+     |--------------------------------------------------------------------------
+     | Basic auth for admin area
+     |--------------------------------------------------------------------------
+     */
+    'basic_login' => env('BASIC_LOGIN',  'admin'),
+    'basic_password' => env('BASIC_PASSWORD','secret'),
+
+
 ];

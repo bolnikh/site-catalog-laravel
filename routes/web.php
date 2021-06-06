@@ -35,7 +35,7 @@ Route::get('/rules', [App\Http\Controllers\PageController::class, 'rules'])->nam
 
 
 Route::prefix('admin')
-    ->middleware(['auth.basic'])
+    ->middleware(['auth.basic.static'])
     ->group(function () {
     Route::get('/', [\App\Http\Controllers\Admin\SiteController::class, 'index'])->name('admin.index');
     Route::get('/site/{site}', [\App\Http\Controllers\Admin\SiteController::class, 'site'])->name('admin.site');
