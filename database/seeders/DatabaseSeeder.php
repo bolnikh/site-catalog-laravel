@@ -29,9 +29,9 @@ class DatabaseSeeder extends Seeder
                     'depth' => 1,
                 ]);
 
-        }
+                }
 
-        foreach (Category::where('depth', 1) as $cat1) {
+        foreach (Category::where('depth', 1)->get() as $cat1) {
             Category::factory()
                 ->count(mt_rand(0, 10))
                 ->create([
