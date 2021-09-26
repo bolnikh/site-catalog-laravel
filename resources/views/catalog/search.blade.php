@@ -2,9 +2,15 @@
 
 
 @section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Поиск</h1>
+                <div>Ищем: {{$query}}</div>
+                <div>Всего найдено: {{$total}}</div>
 
-    <div class="mb-5"></div>
-
-    @include('catalog.site_list')
-
+                @include('catalog.site_list', ['site_list' => $site_list])
+            </div>
+        </div>
+    </div>
 @endsection

@@ -36,6 +36,6 @@
         </div>
     </div>
 
-    @include('catalog.site_list', ['site_list' => $category->sites()->paginate(10)])
+    @include('catalog.site_list', ['site_list' => $category->sites()->orderBy('id', 'DESC')->paginate(10)])
 
 @endsection

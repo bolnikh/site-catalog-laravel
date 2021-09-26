@@ -1,0 +1,54 @@
+source simple_catalog_laravel
+{
+    type            = mysql
+
+    sql_host        = localhost
+    sql_user        = root
+    sql_pass        =
+    sql_db          = simple_catalog_laravel
+    sql_port        = 3306  # optional, default is 3306
+
+    sql_query       = \
+        SELECT id, url, title, description, long_description \
+        FROM sites
+
+	sql_field_string = url
+	sql_field_string = title
+	sql_field_string = description
+	sql_field_string = long_description
+}
+
+
+index simple_catalog_laravel
+{
+    source          = simple_catalog_laravel
+    path            = c:\OpenServer\userdata\sphinx\data\simple_catalog_laravel
+
+	morphology = stem_enru
+	charset_table = 0..9, A..Z->a..z, _, a..z, U+410..U+42F->U+430..U+44F, U+430..U+44F, U+401->U+0435, U+451->U+0435
+
+}
+
+
+
+indexer
+{
+    mem_limit       = 128M
+}
+
+
+searchd
+{
+    listen          = 9312
+    listen          = 9306:mysql41
+    log             = c:\OpenServer\userdata\sphinx\log\searchd.log
+    query_log       = c:\OpenServer\userdata\sphinx\log\query.log
+    read_timeout    = 5
+    max_children    = 30
+    pid_file        = c:\OpenServer\userdata\sphinx\log\searchd.pid
+    seamless_rotate = 1
+    preopen_indexes = 1
+    unlink_old      = 1
+    workers         = threads # for RT to work
+    binlog_path     = c:\OpenServer\userdata\sphinx\bindata
+}

@@ -49,8 +49,9 @@
                         </li>
 
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2 form-control-sm" type="search" placeholder="Поиск" aria-label="Search">
+                    <form class="form-inline my-2 my-lg-0" method="post" action="/search">
+                        @csrf
+                        <input class="form-control mr-sm-2 form-control-sm" type="search" placeholder="Поиск" aria-label="Search" name="query">
                         <button class="btn btn-outline-success my-2 my-sm-0 btn-sm" type="submit">Поиск</button>
                     </form>
                 </div>

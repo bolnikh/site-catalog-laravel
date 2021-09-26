@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Abuse;
 use App\Models\Site;
+use App\Models\Sphinx;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -17,8 +18,6 @@ class CatalogController extends Controller
             ->get()
         ;
 
-        //var_dump($categories);
-
         return view('catalog.index', compact('categories'));
     }
 
@@ -29,8 +28,28 @@ class CatalogController extends Controller
     }
 
 
-    public function search() {
-        return view('catalog.search', ['site_list' => []]);
+    public function search(Request $request) {
+        $query = $request->post('query');
+        if (empty($query)) {
+            $site_list = [];
+            $site_ids = [];
+        } else {
+            $sphinx = new Sphinx();
+            $site_ids = $sphinx->getResult($query);
+            if (empty($site_ids)) {
+                $site_list = [];
+            } else {
+                $site_list = Site::whereIn('id', $site_ids)
+                    ->orderBy('id', 'DESC')
+                    ->paginate(10)
+                ;
+            }
+        }
+
+        return view('catalog.search', ['site_list' => $site_list,
+            'query' => $query,
+            'total' => sizeof($site_ids),
+            ]);
     }
 
     public function site(Request $request, Site $site) {

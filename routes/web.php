@@ -24,6 +24,7 @@ Route::post('/abuse/{site}', [App\Http\Controllers\CatalogController::class, 'se
 
 
 Route::get('/search', [App\Http\Controllers\CatalogController::class, 'search'])->name('search');
+Route::post('/search', [App\Http\Controllers\CatalogController::class, 'search']);
 
 Route::get('/add', [App\Http\Controllers\SiteController::class, 'add_form'])->name('add_form');
 Route::post('/add', [App\Http\Controllers\SiteController::class, 'store'])->name('store');

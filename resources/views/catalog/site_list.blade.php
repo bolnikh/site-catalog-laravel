@@ -39,7 +39,7 @@
 
 
     @if (is_object($site_list))
-        {{ $site_list->links('vendor.pagination.bootstrap-4') }}
+        {{ $site_list->appends(Request::capture()->except('page'))->links('vendor.pagination.bootstrap-4') }}
     @endif
 
 
